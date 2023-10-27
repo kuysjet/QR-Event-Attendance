@@ -17,14 +17,16 @@
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <!-- qr scanner -->
-        <div id="reader"></div>
+        <div class="card px-2 py-3 shadow">
+          <!-- qr scanner -->
+          <div id="reader"></div>
+
+          <div id="result" class="text-center"></div>
+        </div>
       </div>
       <div class="col-md-3"></div>
     </div>
   </div>
-
-  <div id="result" class="text-center"></div>
 
   <script>
     const scanner = new Html5QrcodeScanner('reader', {
