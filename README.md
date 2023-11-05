@@ -1,1 +1,3 @@
 # QR-Event-Attendance
+
+The  QR Code-Based School Event Attendance Monitoring System is a modern and efficient solution designed to simplify the process of tracking attendance at various events, such as seminars, workshops, conferences, school activities, and more. This system leverages QR (Quick Response) codes, a two-dimensional barcode technology, to streamline and automate the attendance management process.
