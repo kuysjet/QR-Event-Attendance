@@ -40,18 +40,20 @@
                       <!-- logo -->
                       <form action="checkuser.php" method="POST">
                         <div class="mb-3">
-                            <label for="username" class="form-label h4">USERNAME</label>
+                          <!-- 'h6-sm' when the screen is small -->
+                            <label for="username" class="form-label h4 h6-sm">USERNAME</label>
                             <input type="text" class="form-control form-control-lg" id="username">
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label h4">PASSWORD</label>
+                            <label for="password" class="form-label h4 h6-sm">PASSWORD</label>
                             <input type="password" class="form-control form-control-lg" id="password">
                         </div>
-                        <div class="text-center pt-4">
+                        <!-- 'pt-sm-1' when the screen is small -->
+                        <div class="text-center pt-4 pt-sm-1">
                           <button class="btn btn-outline-secondary btn-lg" type="submit">Login</button>
                         </div>
-                        
                       </form>
+
                     </div>
                   </div>
 
