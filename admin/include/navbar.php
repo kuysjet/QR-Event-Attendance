@@ -38,7 +38,7 @@
                 <!-- account dropdown -->
                 <div class="dropdown">
                 <a class="text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Logout Logo
+                    <i class='bx bxs-user-circle fs-1' ></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editUserId<?= $_SESSION['id'] ?>">Account</button></li>
@@ -54,7 +54,7 @@
             <!-- account dropdown -->
             <div class="dropdown">
             <a class="text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Logout Logo
+                <i class='bx bxs-user-circle fs-1' ></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editUserId<?= $_SESSION['id'] ?>">Account</button></li>
