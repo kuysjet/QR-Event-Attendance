@@ -6,5 +6,5 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <script src="../bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../node_modules/boxicons/css/boxicons.css"></link>
-    <title>Document</title>
+    <title>QR Code System</title>
 </head>
