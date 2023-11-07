@@ -122,8 +122,8 @@
         </div>
     </div>
 
-    <!-- fixed footer -->
-    <?php include 'include/footer.php'; ?>
 </body>
 
+    <!-- fixed footer -->
+    <?php include 'include/footer.php'; ?>
 </html>
