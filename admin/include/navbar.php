@@ -6,7 +6,7 @@
     }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
         <img class="mx-3" src="../img/Logo AMA.png" width="40" height="50" class="d-inline-block align-text-top">
     </a>
