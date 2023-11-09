@@ -10,8 +10,8 @@ $totalRecords = $conn->query('SELECT COUNT(*) FROM event')->fetch_row()[0];
 // Define the base query and count the rows
 $sql = "SELECT (@row_number:=@row_number + 1) AS No, title, description, 
     CONCAT(
-        '<b>DateTime Start: </b>', datetime_start, '<br>',
-        '<b>DateTime End: </b>', datetime_end, '<br>',
+        '<b>DateTime Start: </b>', DATE_FORMAT(datetime_start, '%b %d, %Y %h:%i %p'), '<br>',
+        '<b>DateTime End: </b>', DATE_FORMAT(datetime_end, '%b %d, %Y %h:%i %p'), '<br>',
         '<b>Assigned SCO: </b>', assigned_sco) AS combined_details, status
     FROM event, (SELECT @row_number:=0) AS rownum";
 

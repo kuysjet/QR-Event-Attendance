@@ -9,7 +9,7 @@
             <div class="col-md-9 mx-auto mt-1 px-5 border-5 border-top border-primary rounded bg-light">
                 <div class="card-body">
                     <div class="pt-2 pb-2">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showAddEvent">
                             <i class='bx bx-plus-circle'></i>
                             Add New
                         </button>
@@ -44,6 +44,50 @@
         </div>
     </div>
 
+    <!-- modal for event -->
+    <div class="modal fade" id="showAddEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">New Event</h1>
+            </div>
+            <div class="modal-body">
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">Title</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">Venue</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">Description</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">DateTime Start</label>
+                    <input type="datetime-local" class="form-control">
+                </div>
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">DateTime End</label>
+                    <input type="datetime-local" class="form-control">
+                </div>
+                <div class="mx-5 pt-1">
+                    <label class="form-label h6">Assign To</label>
+                    <select class="form-select" data-live-search="true">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <script>
