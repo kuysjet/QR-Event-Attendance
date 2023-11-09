@@ -20,7 +20,7 @@
                 <a class="nav-link <?= $page == 'dashboard.php' ? 'active text-primary' : 'text-white' ?>" href="dashboard.php">Dashboard</a>
             </li>
             <li class="nav-item h4 px-3">
-                <a class="nav-link <?= $page == 'event.php' ? 'active text-primary' : 'text-white' ?>" href="event.php">Event</a>
+                <a class="nav-link <?= $page == 'eventList.php' ? 'active text-primary' : 'text-white' ?>" href="eventList.php">Event</a>
             </li>
             <li class="nav-item h4 px-3">
                 <a class="nav-link text-white" href="student.php">Student</a>
