@@ -20,18 +20,21 @@
                             <thead>
                                 <tr>
                                     <th class="border border-top border-secondary">#</th>
-                                    <th class="border border-top border-secondary">ID</th>
-                                    <th class="border border-top border-secondary">FULLNAME</th>
-                                    <th class="border border-top border-secondary">TIME IN</th>
+                                    <th class="border border-top border-secondary">Title</th>
+                                    <th class="border border-top border-secondary">Description</th>
+                                    <th class="border border-top border-secondary">Details</th>
+                                    <th class="border border-top border-secondary">Status</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Your table data goes here -->
                                 <tr>
                                     <td>No</td>
-                                    <td>id</td>
-                                    <td>fullname</td>
-                                    <td>time_in</td>
+                                    <td>title</td>
+                                    <td>description</td>
+                                    <td>combined_details</td>
+                                    <td>status</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -43,7 +46,27 @@
 
 </body>
 
-    <script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "eventListData.php",
+                "type": "POST",
+            },
+            "columns": [
+                {"data": "No"}, // Auto-incremented "No" column
+                {"data": "title"},
+                {"data": "description"},
+                {"data": "combined_details"},
+                {"data": "status"},
+            ]
+        });
+    });
+</script>
+
+    <!-- <script>
         $(document).ready(function () {
         $('#myTable').DataTable({
             "processing": true,
@@ -60,7 +83,7 @@
             ]
         });
     });
-    </script>
+    </script> -->
 
     <!-- fixed footer -->
     <?php include 'include/footer.php'; ?>
