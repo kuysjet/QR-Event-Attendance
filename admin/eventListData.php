@@ -2,13 +2,13 @@
 // Include your database connection code here using mysqli.
 include ("include/dbconn.php");
 // Define the columns that can be sorted/searched in your DataTable
-$columns = array('title', 'description', 'combined_details', 'status');
+$columns = array('id', 'title', 'description', 'combined_details', 'status');
 
 // Get the total number of records in the table
 $totalRecords = $conn->query('SELECT COUNT(*) FROM event')->fetch_row()[0];
 
 // Define the base query and count the rows
-$sql = "SELECT (@row_number:=@row_number + 1) AS No, title, description, 
+$sql = "SELECT (@row_number:=@row_number + 1) AS No, id, title, description, 
     CONCAT(
         '<b>DateTime Start: </b>', DATE_FORMAT(datetime_start, '%b %d, %Y %h:%i %p'), '<br>',
         '<b>DateTime End: </b>', DATE_FORMAT(datetime_end, '%b %d, %Y %h:%i %p'), '<br>',
