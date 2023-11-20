@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 01:33 PM
+-- Generation Time: Nov 20, 2023 at 02:18 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `academic_year`
---
-
-CREATE TABLE `academic_year` (
-  `id` int(11) NOT NULL,
-  `year` varchar(16) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `admins`
 --
 
@@ -48,8 +35,7 @@ CREATE TABLE `admins` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `avatar` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -63,8 +49,7 @@ CREATE TABLE `courses` (
   `course` varchar(100) NOT NULL,
   `level` int(5) NOT NULL,
   `section` varchar(12) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -75,12 +60,13 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
+  `school_year` varchar(50) NOT NULL,
   `title` varchar(100) NOT NULL,
   `venue` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `datetime_start` datetime NOT NULL,
   `datetime_end` datetime NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -95,10 +81,21 @@ CREATE TABLE `officers` (
   `last_name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact` int(11) NOT NULL,
-  `avatar` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `contact` int(50) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `school_year`
+--
+
+CREATE TABLE `school_year` (
+  `id` int(11) NOT NULL,
+  `year` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -110,6 +107,7 @@ CREATE TABLE `officers` (
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
   `USN` int(12) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -117,22 +115,14 @@ CREATE TABLE `students` (
   `level` int(5) NOT NULL,
   `section` int(12) NOT NULL,
   `contact` int(50) NOT NULL,
-  `avatar` varchar(100) NOT NULL,
-  `qr_code` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `avatar` varchar(255) NOT NULL,
+  `qr_code` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `academic_year`
---
-ALTER TABLE `academic_year`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admins`
@@ -153,6 +143,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `school_year`
+--
+ALTER TABLE `school_year`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -161,12 +157,6 @@ ALTER TABLE `students`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `academic_year`
---
-ALTER TABLE `academic_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -184,6 +174,12 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `school_year`
+--
+ALTER TABLE `school_year`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
