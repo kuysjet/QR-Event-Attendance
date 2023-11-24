@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2023 at 04:38 PM
+-- Generation Time: Nov 24, 2023 at 05:57 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `email` int(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `avatar` text NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE `officers` (
   `last_name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact` int(50) NOT NULL,
+  `phone` int(50) NOT NULL,
   `avatar` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
@@ -143,13 +143,13 @@ CREATE TABLE `reports` (
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
-  `USN` int(12) NOT NULL,
+  `usn` int(12) NOT NULL,
   `password` varchar(100) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `contact` int(50) NOT NULL,
+  `phone` int(50) NOT NULL,
   `address` varchar(255) NOT NULL,
   `avatar` varchar(255) NOT NULL,
   `qr_code` varchar(255) NOT NULL,
@@ -177,7 +177,10 @@ ALTER TABLE `admins`
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `academic_id` (`academic_id`,`event_id`,`student_id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `courses`
@@ -195,13 +198,17 @@ ALTER TABLE `events`
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `academic_year_id` (`academic_year_id`,`event_id`,`attendance_id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `attendance_id` (`attendance_id`);
 
 --
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -254,10 +261,26 @@ ALTER TABLE `students`
 --
 
 --
--- Constraints for table `courses`
+-- Constraints for table `attendance`
 --
-ALTER TABLE `courses`
-  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`id`) REFERENCES `students` (`id`);
+ALTER TABLE `attendance`
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`academic_id`) REFERENCES `academic_year` (`id`),
+  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
+  ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`attendance_id`) REFERENCES `attendance` (`id`);
+
+--
+-- Constraints for table `students`
+--
+ALTER TABLE `students`
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
